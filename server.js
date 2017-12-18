@@ -2,25 +2,32 @@ const https = require('https');
 
 https.get("https://jsonplaceholder.typicode.com/photos",function(res){
 
-let body ="";
-res.setEncoding("utf8");
+let body ='';
+
+// convert buffer chunks to strings 
 res.on("data",function(data){
 
-    body = data;
+    body += data;
 
 });
 
 
 res.on("end",function(){
 
-//    let jbody = JSON.parse(body);
-    // console.log(body);
+   var obj = JSON.parse(body);
+    console.log(obj);
+
+
+    for(var item in obj){
+            console.log(obj[item]);
+    }
+
+
+
+
     
-   for(var item in body){
-       if(item.hasOwnProperty >= 4999){
-           console.log(item);
-       }
-   }
+    
+   
     
 
 });
